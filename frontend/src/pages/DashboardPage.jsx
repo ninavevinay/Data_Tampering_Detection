@@ -78,6 +78,9 @@ export default function DashboardPage() {
       const payload = await createRecord(token, { label, data: parsed });
       setStatus({ type: "ok", message: payload.message });
       await refreshRecords();
+      if (payload.record && payload.record.id) {
+        setSelectedRecordId(payload.record.id);
+      }
       setCreateFile(null);
     } catch (error) {
       setStatus({ type: "error", message: error.message });
