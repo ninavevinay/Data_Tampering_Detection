@@ -3,11 +3,11 @@
 Production-oriented full-stack app using:
 - React + Tailwind CSS (animated UI + light/dark toggle)
 - Node.js + Express API
-- Supabase (Auth, OAuth, Postgres)
+- Supabase (Auth, Postgres)
 - JWT verification on backend
 
 ## Features
-- Email/password login and OAuth login (Google/GitHub) via Supabase
+- Email/password login via Supabase
 - Backend-protected APIs using Supabase JWT bearer tokens
 - Deterministic JSON canonicalization + SHA-256 hashing
 - Record hash snapshots in Supabase
@@ -25,7 +25,6 @@ Production-oriented full-stack app using:
 2. Run `backend/supabase/schema.sql` in SQL Editor.
 3. In Supabase Auth:
    - Enable Email auth
-   - Enable OAuth providers you want (Google/GitHub)
    - Add redirect URL(s), for local dev use:
      - `http://localhost:5173`
 4. Copy project keys from Supabase settings:
@@ -86,20 +85,21 @@ Backend start:
 npm run start:backend
 ```
 
-## 5) Docker Deployment
-1. Ensure `backend/.env` exists.
-2. Export frontend Supabase vars in your shell:
-   - `VITE_SUPABASE_URL`
+## 5) Vercel Deployment (Frontend)
+The frontend can be easily deployed to Vercel for free hosting with automatic CI/CD.
+
+1. Create a free account at [Vercel](https://vercel.com).
+2. Click **Add New** > **Project** and import your GitHub repository (`ninavevinay/Data_Tampering_Detection`).
+3. In the project configuration screen:
+   - **Framework Preset**: Select `Vite` (Vercel usually auto-detects this).
+   - **Root Directory**: Click Edit and select `frontend`.
+4. Open the **Environment Variables** section and add:
+   - `VITE_API_URL` (The URL of your hosted backend, e.g., Render/Railway)
+   - `VITE_SUPABASE_URL` 
    - `VITE_SUPABASE_ANON_KEY`
-3. Run:
+5. Click **Deploy**. Vercel will build and host your production-ready frontend instantly!
 
-```bash
-docker compose up --build -d
-```
-
-Containers:
-- Web: `http://localhost:3000`
-- API: `http://localhost:8080`
+*(Note: The `backend/` is an Express API and should normally be deployed to a NodeJS hosting provider like Render, Railway, or Heroku, and its generated URL should be used as your `VITE_API_URL` above).*
 
 ## API Endpoints
 - `GET /api/health` Public health check
