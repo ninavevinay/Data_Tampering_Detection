@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply min-h-screen font-body text-slate-900 dark:text-slate-100;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(59, 130, 246, 0.15), transparent 40%),
+    radial-gradient(circle at 88% 8%, rgba(16, 185, 129, 0.16), transparent 36%),
+    radial-gradient(circle at 50% 92%, rgba(251, 146, 60, 0.14), transparent 34%),
+    linear-gradient(160deg, #f8fafc, #e2e8f0);
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 12% 15%, rgba(37, 99, 235, 0.25), transparent 40%),
+    radial-gradient(circle at 88% 8%, rgba(20, 184, 166, 0.18), transparent 36%),
+    radial-gradient(circle at 50% 92%, rgba(249, 115, 22, 0.14), transparent 34%),
+    linear-gradient(160deg, #020617, #0f172a);
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-white/40 bg-white/70 p-5 shadow-xl backdrop-blur-md dark:border-slate-700/70 dark:bg-slate-900/70;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 font-semibold text-white transition hover:scale-[1.01] hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 font-semibold text-slate-900 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-slate-700 focus:ring-2 focus:ring-slate-700/20 dark:border-slate-700 dark:bg-slate-950 dark:focus:border-slate-300 dark:focus:ring-slate-200/20;
+  }
+}
